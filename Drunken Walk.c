@@ -56,7 +56,9 @@ task main()
 	}
 */
 
-
+//getsensor value
+//gettouch
+//keep track of speeds and adjust slightly ever 15ms?
 
 	int randomMove = random(5);
 	while (true) {
@@ -75,13 +77,13 @@ task main()
 	  		randomMove = random(5);
 		  } else if (randomMove == 2) {
 		 		sharpRight();
-		 		randomMove = random(5);
+		 		randomMove = random(1);
 			} else if (randomMove == 3) {
 				sharpLeft();
-				randomMove = random(5);
-			} else {
+				randomMove = random(1);
+			} else {//5
 				travelForward();
-				randomMove = random(5);
+				randomMove = random(1);
 			}
 	 }
 }
@@ -91,6 +93,8 @@ task main()
  * backs up for 2 seconds, then turns right at a random angle
  */
 void turnRight() {
+	displayCenteredBigTextLine(4, "Back");
+	setLEDColor(ledOff);
 	setMotor(motorC, -50);
 	setMotor(motorB, -50);
 	sleep(2000);
@@ -105,6 +109,8 @@ void turnRight() {
  * backs up for 2 seconds, then turns left at a random angle
  */
 void turnLeft() {
+	displayCenteredBigTextLine(4, "Back");
+	setLEDColor(ledOff);
 	setMotor(motorB, -50);
 	setMotor(motorC, -50);
 	sleep(2000);
@@ -118,46 +124,56 @@ void turnLeft() {
  * backs up, goes left or right randomely at a random angle
  */
 void backUp() {
+	displayCenteredBigTextLine(4, "Back");
+	setLEDColor(ledOff);
 	setMotor(motorB, -50);
 	setMotor(motorC, -50);
 	sleep(2000);
 	if (random(1)) //0 or 1, true or false... maybe?
 	{
-		setMotor(motorB, 10);
-		setMotor(motorC, random(80) + 20);
+		sharpRight();
 	}
 	else {
-		setMotor(motorC, 10);
-		setMotor(motorB, random(100));
+		sharpLeft();
 	}
 	sleep(random(3000) + 500);
 }
 
 void travelLeft() {
+	displayCenteredBigTextLine(4, "Left");
+	setLEDColor(ledGreen);
 	setMotor(motorB, 50);
 	setMotor(motorC, 60);
 	sleep(random(3000) + 500);
 }
 
 void travelRight() {
+	displayCenteredBigTextLine(4, "Right");
+	setLEDColor(ledRed);
 	setMotor(motorB, 60);
 	setMotor(motorC, 50);
 	sleep(random(3000) + 500);
 }
 
 void travelForward() {
+	displayCenteredBigTextLine(4, "Straight");
+	setLEDColor(ledOff);
 	setMotor(motorB, 60);
 	setMotor(motorC, 60);
 	sleep(random(2000) + 500);
 }
 
 void sharpRight() {
+	displayCenteredBigTextLine(4, "Right");
+	setLEDColor(ledRed);
 	setMotor(motorB, 50);
 	setMotor(motorC, 0);
 	sleep(400);
 }
 
 void sharpLeft() {
+	displayCenteredBigTextLine(4, "Right");
+	setLEDColor(ledGreen);
 	setMotor(motorB, 0);
 	setMotor(motorC, 50);
 	sleep(400);
