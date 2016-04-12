@@ -23,6 +23,7 @@ task detectSensor() {
 						while(i++ < 200) { //check for 300 ms (bar still isn't very sensitive)
 							if(SensorValue[touchSensorL]) {
 								back = true;
+								i = 200;
 								break;
 							}
 							wait1Msec(1);
@@ -43,6 +44,7 @@ task detectSensor() {
 						while (i++ < 200) {
 							if (SensorValue[touchSensorR]){
 								back = true;
+								i = 200;
 								break;
 							}
 							wait1Msec(1);
@@ -148,7 +150,7 @@ void backUp() {
 	else {
 		sharpLeft();
 	}
-	sleep(random(3000) + 500);
+	sleep(random(1500) + 1000);
 }
 
 void travelRight() {
