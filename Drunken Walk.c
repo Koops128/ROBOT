@@ -143,6 +143,8 @@ void backUp() {
 	setMotor(motorB, -50);
 	setMotor(motorC, -50);
 	sleep(2000);
+	stopAllMotors();
+	sleep(2000);
 	if (random(1)) //0 or 1, true or false... maybe?
 	{
 		sharpRight();
