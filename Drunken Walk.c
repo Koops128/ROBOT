@@ -20,7 +20,7 @@ task detectSensor() {
 		bool back = false;
 		while(true) {
 				if (SensorValue[touchSensorR]) {
-						while(i++ < 15) { //check for 15 ms
+						while(i++ < 200) { //check for 300 ms (bar still isn't very sensitive)
 							if(SensorValue[touchSensorL]) {
 								back = true;
 								break;
@@ -33,13 +33,14 @@ task detectSensor() {
 							backUp();
 						} else {
 							turnLeft();
+							travelLeft();
 						}
 						back = false;
 						i = 0;
 						startTask(moveRandomly);
 				}
 				if (SensorValue[touchSensorL]) {
-						while (i++ < 15) {
+						while (i++ < 200) {
 							if (SensorValue[touchSensorR]){
 								back = true;
 								break;
@@ -51,7 +52,8 @@ task detectSensor() {
 						if (back) {
 							backUp();
 						} else {
-							turnLeft();
+							turnRight();
+							travelRight();
 						}
 						back = false;
 						i = 0;
@@ -83,7 +85,7 @@ task moveRandomly
 				sharpLeft();
 				randomMove = random(1);
 			} else {//5
-				travelForward();
+				//travelForward();
 				randomMove = random(1);
 			}
 	 }
@@ -133,6 +135,7 @@ void turnLeft() {
  * backs up, goes left or right randomely at a random angle
  */
 void backUp() {
+	playTone(400, 20);
 	displayCenteredBigTextLine(4, "Back");
 	setLEDColor(ledOff);
 	setMotor(motorB, -50);
